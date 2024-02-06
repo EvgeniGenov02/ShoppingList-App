@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewBag.Title = "All Products";
+}
+
+<p>Add Product:</p>
+
+<a asp-controller="Product" asp-action="Add" class="btn btn-outline-secondary" type="button" id="button-add-product">Add Product</a>
+    
+<p>@ViewBag.Title:</p>
+
+@if(Model.Count() > 0)
+{
+   
+    @foreach (var item in Model)
+    {
+
+              <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 id="products-id" class="card-title">ID: @item.Id</h5>
+                <p class="card-text">Product name: @item.Name</p>
+
+                @foreach (var note in item.ProductNotes)
+                {
+                    <p>@note.Content</p>
+                }
+                <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary d-grid gap-2">Edit</a>
+                <form class="mt-2" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">
+                    <div class="d-grid gap-2">
+                        <input type="submit" value="Delete" class="btn-danger mb-2"/>
+                    </div>
+                </form>
+                <a asp-controller="Product" asp-action="AddProductNote" asp-route-id="@item.Id" class="btn btn-outline-secondary" type="button" id="button-add-product">Add Product Notes</a>
+            </div>
+        </div>
+
+       <br/>
+    }
+}
+
+@if(Model.Count() <= 0)
+{
+    <p>No products yet!</p>
+}
+
+
+

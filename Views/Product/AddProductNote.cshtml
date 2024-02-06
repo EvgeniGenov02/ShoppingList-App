@@ -1,0 +1,23 @@
+﻿@model ProductNotesViewModel
+@{
+    ViewBag.Title = "Product Notes";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="row">
+    <form method="post">
+        <div class="form-group">
+            <div class="mb-3">
+                <label asp-for="Content"></label>
+                <input asp-for="Content" class="form-control" placeholder="Write your product here..."></input>
+                <span asp-validation-for="Content" class="small small text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-primary mt-3" type="submit" value="AddProductNote"></input>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
